@@ -1,6 +1,6 @@
 [project]
 name = "mo-range-query"
-version = "0.1.1"
+version = "0.1.2"
 description = "Reorders batched range queries via Mo's algorithm to process them in O((N+Q)√N) total time"
 requires-python = ">=3.10"
 dependencies = []
