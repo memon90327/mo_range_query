@@ -49,3 +49,10 @@ The trade-off: answers are produced in the original insertion order, but interna
 - `n = 0` is permitted; `run()` returns `[]`.
 - The accumulator is driven by the core in a specific order: **expansions happen before shrinks** within each window move. If your accumulator tracks a non-negative counter (distinct-count, frequency), this ordering keeps the counter from transiently going negative mid-move. You do not need to handle negative counts defensively, but your `remove_*` methods must not be called on an index that is not currently in the window — the core guarantees this never happens.
 - The block size defaults to `√n`; pass `block_size=` to override (useful if you want a fixed schedule for benchmarking, not for correctness).
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
